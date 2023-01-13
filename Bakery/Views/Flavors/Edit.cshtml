@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Bakery.Models.Flavor
+<div class="jumbotron text-center">
+<h2>Edit</h2>
+
+<h4>Edit this flavor: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.FlavorId)
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      @Html.LabelFor(model => model.Name)
+      @Html.EditorFor(model => model.Name)
+    </div>
+  </div>
+    <input type="submit" value="Save" />
+}
+</div>
+<p>@Html.ActionLink("Back to list", "Index")</p>

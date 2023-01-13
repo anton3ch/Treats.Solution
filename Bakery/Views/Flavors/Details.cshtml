@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Bakery.Models
+@model Bakery.Models.Flavor
+<div class="jumbotron text-center">
+
+<h2>Flavor Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This flavor does not belong to any treats</p>
+}
+else
+{
+  <h4>Treats the flavor belongs to:</h4>
+  <ul class="mb-5 list-group">
+  @foreach(FlavorTreat join in Model.JoinEntities)
+  {
+    <li class="list-group-item list-group-item-action">@join.Treat.Name</li>
+    @using (Html.BeginForm("DeleteJoin", "Flavors", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-2" }))
+    {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+</div>
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
