@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Bakery.Models.Treat
+
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+<p>@Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
+<div class="text-center jumbotron">
+
+<h4>Add a new Treat</h4>
+
+@using (Html.BeginForm())
+{
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      @Html.LabelFor(model => model.Name)
+      @Html.TextBoxFor(model => model.Name)
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      @Html.LabelFor(model => model.Details)
+      @Html.TextBoxFor(model => model.Details)
+    </div>
+  </div>
+    <input type="submit" value="Add new Treat" class="btn btn-default" />
+}
+</div>
+<p>@Html.ActionLink("Show all Treats", "Index")</p>
