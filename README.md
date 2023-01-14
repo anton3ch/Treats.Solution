@@ -62,8 +62,8 @@ Bakery shop tracks treat and flavor relationships for authenticated users.
     Open MySQLWorkbench, log in, and connect to your local server
     Go to the Administration tab, select Data Import/Restore
     Select Import from Self Contained File
-    Select ../anton_ch_Treats.sql from the top level of the cloned repository, Treats.
-    Select "New..." and set new schema name to anton_ch_Treats
+    Select ../anton_ch_bakery.sql from the top level of the cloned repository, Treats.
+    Select "New..." and set new schema name to anton_ch_bakery
     Select 'Start Import'
     Now you have a copy of the project database on your machine.
   ```
