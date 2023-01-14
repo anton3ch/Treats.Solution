@@ -31,13 +31,13 @@ namespace Bakery.Controllers
                           .ToList();
       return View(userTreats);
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Create()
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View();
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
@@ -65,14 +65,14 @@ namespace Bakery.Controllers
           .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Edit(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult Edit(Treat treat)
     {
@@ -80,13 +80,13 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Delete(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -95,14 +95,14 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult AddFlavor(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult AddFlavor(Treat treat, int flavorId)
     {
@@ -116,7 +116,7 @@ namespace Bakery.Controllers
       }
       return RedirectToAction("Details", new { id = treat.TreatId });
     }   
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {

@@ -7,7 +7,7 @@
 
 
   
-<table class="table table-sm table-bordered table-bordered">
+@* <table class="table table-sm table-bordered table-bordered">
     <tr><th>ID</th><th>Name</th><th>Users</th><th>Update</th><th>Delete</th></tr>
     @foreach (var role in Model)
     {
@@ -20,6 +20,39 @@
             </td>
             <td class="text-center">
                 @using (Html.BeginForm("Delete", "Role", new { id = role.Id }))
+            {
+              <input type="submit" value="Delete">
+            }
+            </td>
+        </tr>
+    }
+</table> *@
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Users</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Key.Id</td>
+            <td>@role.Key.Name</td>
+            <td>
+                <ul>
+                    @foreach (var user in role.Value)
+                    {
+                        <li>@user.UserName</li>
+                    }
+                </ul>
+            </td>
+            <td class="text-center">
+              <div class="btn btn-sm btn-primary">@Html.ActionLink("Edit", "Edit", new { id = role.Key.Id })</div>
+            </td>
+            <td class="text-center">
+                @using (Html.BeginForm("Delete", "Role", new { id = role.Key.Id }))
             {
               <input type="submit" value="Delete">
             }

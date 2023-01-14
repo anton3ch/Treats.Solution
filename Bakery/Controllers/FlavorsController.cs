@@ -34,13 +34,13 @@ namespace Bakery.Controllers
       return View(thisFlavor);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Create()
     {
       return View();
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult Create(Flavor flavor)
     {
@@ -49,7 +49,7 @@ namespace Bakery.Controllers
       return RedirectToAction("Index");
     }
     
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult AddTreat(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
@@ -57,7 +57,7 @@ namespace Bakery.Controllers
       return View(thisFlavor);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int treatId)
     {
@@ -72,14 +72,14 @@ namespace Bakery.Controllers
       return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Edit(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
       return View(thisFlavor);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
@@ -88,14 +88,14 @@ namespace Bakery.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult Delete(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
       return View(thisFlavor);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -105,7 +105,7 @@ namespace Bakery.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
