@@ -23,18 +23,17 @@ namespace Bakery
                         )
                       );
 
-      // New code below!!
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<BakeryContext>()
                 .AddDefaultTokenProviders();
 
       WebApplication app = builder.Build();
 
-      // app.UseDeveloperExceptionPage();
       app.UseHttpsRedirection();
       app.UseStaticFiles();
 
       app.UseRouting();
+
 
       app.UseAuthentication(); 
       app.UseAuthorization();

@@ -9,9 +9,8 @@
 <hr>
 
 <div class="jumbotron text-center">
-  <h1>Hi, @User.Identity.Name!</h1>
-@if (User.Identity.IsAuthenticated)
-{
+  <h1>Hi</h1>
+
   <div class="card mb-4 pt-2">
     <h4>Treats</h4>
     @if (Model["treats"].Length == 0)
@@ -38,11 +37,7 @@
       }
     </ul>
   </div>
-}
-else
-{
-  <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your treats and flavors.</p>
-}
+
 
 </div>
 <hr>

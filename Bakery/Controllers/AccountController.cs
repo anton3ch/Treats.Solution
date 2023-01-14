@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Bakery.Models;
 using System.Threading.Tasks;
 using Bakery.ViewModels;
+using System.Security.Claims;
 
 namespace Bakery.Controllers
 {
@@ -19,9 +20,12 @@ namespace Bakery.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View();
+      ViewBag.Title = "Account";
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      return View(currentUser);
     }
 
     public IActionResult Register()
