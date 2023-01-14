@@ -47,9 +47,9 @@ Bakery shop tracks treat and flavor relationships for authenticated users.
   ```
 - Create appsettings.json file:
   ```
-   ~/Desktop/Treats.Solution $ cd Treats
-   ~/Desktop/Treats.Solution/Treats $ touch appsettings.json
-   ~/Desktop/Treats.Solution/Treats $ echo '{
+   ~/Desktop/Treats.Solution $ cd Bakery
+   ~/Desktop/Treats.Solution/Bakery $ touch appsettings.json
+   ~/Desktop/Treats.Solution/Bakery $ echo '{
       "ConnectionStrings": {
         "DefaultConnection": "Server=localhost;Port=3306;database=anton_ch_bakery;uid=root;pwd=[PASSWORD];"
       }
