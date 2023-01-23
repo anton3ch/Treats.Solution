@@ -34,7 +34,7 @@ namespace Bakery.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register (RegisterViewModel model)
+    public async Task<ActionResult> Register(RegisterViewModel model)
     {
       if (!ModelState.IsValid)
       {
@@ -42,7 +42,7 @@ namespace Bakery.Controllers
       }
       else
       {
-        ApplicationUser user = new ApplicationUser { UserName = model.Email };
+        ApplicationUser user = new ApplicationUser { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName };
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
@@ -59,7 +59,7 @@ namespace Bakery.Controllers
       }
     }
 
-        public ActionResult Login()
+    public ActionResult Login()
     {
       return View();
     }
