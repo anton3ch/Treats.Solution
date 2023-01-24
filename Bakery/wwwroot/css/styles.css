@@ -113,7 +113,7 @@ a:hover:before {
   transform: scale(1);
 }
 
-div.footer {
+div.foote {
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
@@ -123,11 +123,11 @@ div.footer {
 	padding: 0px;
 }
 
-a.footer {
+a.foote {
   color: rgb(189, 188, 188);
 }
 
-a.footer:hover {
+a.foote:hover {
   color: rgb(255, 255, 255);
 }
 

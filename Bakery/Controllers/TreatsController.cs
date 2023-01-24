@@ -36,7 +36,7 @@ namespace Bakery.Controllers
                           .ToList();
         return View(userTreats);
       } else {
-        return View(_db.Flavors.ToList());
+        return View(_db.Treats.ToList());
       }
     }
     [Authorize]
@@ -47,22 +47,16 @@ namespace Bakery.Controllers
     }
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult> Create(Treat treat, int FlavorId)
+    public async Task<ActionResult> Create(Treat treat)
     {
-      if (!ModelState.IsValid)
-      {
-        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
-        return View(treat);
-      }
-      else
-      {
+      
         string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
         treat.User = currentUser;
         _db.Treats.Add(treat);
         _db.SaveChanges();
         return RedirectToAction("Index");
-      }
+      
     }
 
     public ActionResult Details(int id)
