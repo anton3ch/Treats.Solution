@@ -23,9 +23,9 @@ namespace Bakery.Controllers
       public async Task<ActionResult> Index()
       {
         // Flavor logic
-        Flavor[] flavors = _db.Flavors.ToArray();
+        
         Dictionary<string,object[]> model = new Dictionary<string, object[]>();
-        model.Add("flavors", flavors);
+        
         // Treat logic
         string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
@@ -35,9 +35,16 @@ namespace Bakery.Controllers
                       .Where(entry => entry.User.Id == currentUser.Id)
                       .ToArray();
           model.Add("treats", treats);
+
+          Flavor[] flavors = _db.Flavors
+                      .Where(entry => entry.User.Id == currentUser.Id)
+                      .ToArray();
+          model.Add("flavors", flavors);
         } else {
           Treat[] treats = _db.Treats.ToArray();
+          Flavor[] flavors = _db.Flavors.ToArray();
           model.Add("treats", treats);
+          model.Add("flavors", flavors);
         }
         return View(model);
       }
